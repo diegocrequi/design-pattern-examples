@@ -1,33 +1,36 @@
 package stateExample;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Enrollment {
+	private List<Subject> subjects;
 	
-	State state;
-	Boolean presentEnrollment;
-	
-	public Enrollment(DraftState initialState) {
-		initialState.setEnrollment(this);
-		this.state = initialState;
-		presentEnrollment = false;
+	public Enrollment() {
+		this.subjects = new ArrayList<Subject>();
 	}
 	
-	public void nextState() {
-		state.nextState();
+	public void addSubject(Subject subject) {
+		subjects.add(subject);
 	}
 	
-	public void showCurrentState( ) {
-		System.out.println("Current state: " + state.getName());
+	public void removeSubject(Subject subject) {
+		subjects.remove(subject);
 	}
 	
-	public void setState(State state) {
-		this.state = state;
+	public Double getTotalCost() {
+		return subjects.stream().mapToDouble(subject -> subject.getCost())
+				.sum();
+				
 	}
-
-	public Boolean getPresentEnrollment() {
-		return presentEnrollment;
-	}
-
-	public void setPresentEnrollment(Boolean presentEnrollment) {
-		this.presentEnrollment = presentEnrollment;
+	
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("** ENROLLMENT **\n");
+		subjects.forEach(subject -> stringBuilder.append(" - " + subject.toString() + " €\n"));
+		stringBuilder.append("Total cost: ");
+		stringBuilder.append(this.getTotalCost());
+		stringBuilder.append(" €");
+		return stringBuilder.toString();
 	}
 }

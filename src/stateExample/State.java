@@ -1,8 +1,6 @@
 package stateExample;
 
 public interface State {
-	void nextState();
+	Double getCost();
 	String getName();
-	void setEnrollment(Enrollment enrollment);
-	
 }
