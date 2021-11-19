@@ -28,5 +28,12 @@ public class Alumn {
 		enrollment.addSubject(iissi2);
 		
 		System.out.println(enrollment.toString());
+		
+		psm.setState(secondState);
+		ac.setState(thirdState);
+		
+		System.out.println();
+		System.out.println(enrollment.toString());
+		
 	}
 }
